@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.mosclofri</groupId>
+        <artifactId>cucumber-appium-java-framework</artifactId>
+        <version>0.5.0</version>
+    </parent>
+
+    <artifactId>cucumber-appium-java-test</artifactId>
+    <groupId>com.appium.test</groupId>
+    <version>1.0.0</version>
+
+    <properties>
+        <platform>Android</platform>
+        <appium.host>127.0.0.1</appium.host>
+        <appium.port>4799</appium.port>
+        <implicit.wait>10</implicit.wait>
+        <no.reset>true</no.reset>
+        <log.level>warn</log.level>
+        <test.application>api-demos-debug.apk</test.application>
+        <test.device>emulator-5554</test.device>
+        <compare.image>true</compare.image>
+        <testrail.url>https://???/index.php?/cases/view/</testrail.url>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-version}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <spring.profiles.active>${platform}</spring.profiles.active>
+                        <platform.name>${platform}</platform.name>
+                        <appium.host>${appium.host}</appium.host>
+                        <appium.port>${appium.port}</appium.port>
+                        <implicit.wait>${implicit.wait}</implicit.wait>
+                        <file>${test.application}</file>
+                        <device.name>${test.device}</device.name>
+                        <compare.image>${compare.image}</compare.image>
+                        <no.reset>${no.reset}</no.reset>
+                        <appium.log>${log.level}</appium.log>
+                        <testrail.url>${testrail.url}</testrail.url>
+                    </systemPropertyVariables>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <workingDirectory>${basedir}</workingDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>${reporting-version}</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>${artifactId}</projectName>
+                            <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                            <parallelTesting>false</parallelTesting>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.mosclofri</groupId>
+            <artifactId>testapi</artifactId>
+            <version>0.5.0</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>cucumber-appium-java-mvn-repo</id>
+            <url>https://raw.github.com/mosclofri/cucumber-appium-java-framework/mvn-repo/</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
