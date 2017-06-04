@@ -6,8 +6,6 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.fail;
@@ -19,7 +17,7 @@ public class AlertDialogsStepDefs extends AlertDialogsPageObjects {
 
     @Before
     public void before() {
-        PageFactory.initElements(new AppiumFieldDecorator(alertDialogsStepDefs.getDriver()), this);
+        alertDialogsStepDefs.initElementsWithFieldDecorator(this);
     }
 
     @Given("^I am on 'Alert Dialogs' screen$")
