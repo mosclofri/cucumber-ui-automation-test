@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.github.mosclofri</groupId>
         <artifactId>cucumber-appium-java-framework</artifactId>
-        <version>0.5.3</version>
+        <version>0.5.5</version>
     </parent>
 
     <artifactId>cucumber-appium-java-test</artifactId>
@@ -18,7 +18,7 @@
         <appium.port>4799</appium.port>
         <implicit.wait>3</implicit.wait>
         <no.reset>true</no.reset>
-        <log.level>warn</log.level>
+        <log.level>info</log.level>
         <test.application>api-demos-debug.apk</test.application>
         <test.device>emulator-5554</test.device>
         <compare.image>true</compare.image>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.github.mosclofri</groupId>
             <artifactId>appium-testapi</artifactId>
-            <version>0.5.3</version>
+            <version>0.5.5</version>
         </dependency>
     </dependencies>
 
