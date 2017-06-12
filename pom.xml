@@ -12,19 +12,6 @@
     <groupId>com.appium.test</groupId>
     <version>1.0.0</version>
 
-    <properties>
-        <platform>Android</platform>
-        <appium.host>127.0.0.1</appium.host>
-        <appium.port>4799</appium.port>
-        <implicit.wait>3</implicit.wait>
-        <no.reset>true</no.reset>
-        <log.level>info</log.level>
-        <test.application>api-demos-debug.apk</test.application>
-        <test.device>emulator-5554</test.device>
-        <compare.image>true</compare.image>
-        <testrail.url>https://???/index.php?/cases/view/</testrail.url>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
@@ -42,17 +29,15 @@
                 <version>${surefire-version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <spring.profiles.active>${platform}</spring.profiles.active>
-                        <platform.name>${platform}</platform.name>
-                        <appium.host>${appium.host}</appium.host>
-                        <appium.port>${appium.port}</appium.port>
-                        <implicit.wait>${implicit.wait}</implicit.wait>
-                        <file>${test.application}</file>
-                        <device.name>${test.device}</device.name>
-                        <compare.image>${compare.image}</compare.image>
-                        <no.reset>${no.reset}</no.reset>
-                        <appium.log>${log.level}</appium.log>
-                        <testrail.url>${testrail.url}</testrail.url>
+                        <spring.profiles.active>Android</spring.profiles.active> <!--Appium Platform-->
+                        <appium.host>127.0.0.1</appium.host>
+                        <appium.port>4799</appium.port>
+                        <implicit.wait>3</implicit.wait>
+                        <app.file>api-demos-debug.apk</app.file>
+                        <device.name>emulator-5554</device.name>
+                        <compare.image>false</compare.image>
+                        <no.reset>true</no.reset>
+                        <appium.log>warn</appium.log>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                     <workingDirectory>${basedir}</workingDirectory>
