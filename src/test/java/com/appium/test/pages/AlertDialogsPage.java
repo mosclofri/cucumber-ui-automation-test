@@ -1,6 +1,6 @@
 package com.appium.test.pages;
 
-import com.appium.api.base.PageObjectConstruct;
+import com.appium.framework.base.PageObjectConstruct;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindAll;
 import io.appium.java_client.pagefactory.AndroidFindBy;
