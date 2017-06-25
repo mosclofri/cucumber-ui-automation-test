@@ -10,6 +10,7 @@
 
     <modules>
         <module>appium-apidemos-test</module>
+        <module>selenium-herokuapp-test</module>
     </modules>
-    
+
 </project>

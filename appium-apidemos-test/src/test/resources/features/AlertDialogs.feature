@@ -1,5 +1,7 @@
 Feature: Alert Dialogs
-  This feature file intent to test Alert Dialogs within ApiDemos
+  As I user
+  I would like to set alert
+  So that the application can send alerts
 
   Background:
     Given I am on 'Alert Dialogs' screen

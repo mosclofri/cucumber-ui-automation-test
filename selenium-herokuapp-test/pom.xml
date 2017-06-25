@@ -8,13 +8,13 @@
         <version>0.6.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>appium-apidemos-test</artifactId>
+    <artifactId>selenium-herokuapp-test</artifactId>
     <version>${project.parent.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>com.github.mosclofri</groupId>
-            <artifactId>java-appium-framework</artifactId>
+            <artifactId>java-selenium-framework</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
@@ -27,13 +27,12 @@
                 <version>${surefire-version}</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <spring.profiles.active>Android</spring.profiles.active>
-                        <platform.name>Android</platform.name>
-                        <appium.host>127.0.0.1</appium.host>
-                        <appium.port>4799</appium.port>
+                        <spring.profiles.active>Selenium</spring.profiles.active>
+                        <platform.name>Selenium</platform.name>
+                        <browser.name>Chrome</browser.name>
+                        <base.url>http://the-internet.herokuapp.com</base.url>
                         <implicit.wait>3</implicit.wait>
-                        <app.file>api-demos-debug.apk</app.file>
-                        <device.name>emulator-5554</device.name>
+                        <grid.use>false</grid.use>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                     <workingDirectory>${basedir}</workingDirectory>
