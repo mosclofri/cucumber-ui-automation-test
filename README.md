@@ -1,10 +1,13 @@
-# cucumber-appium-java-test
+# cucumber-ui-automation-test
 
  This repository contains sample usage of  [cucumber-ui-automation-framework](https://github.com/mosclofri/cucumber-ui-automation-framework)
 
 ## Running Your Tests
 
- * You can basically run your test with default settings via `mvn clean install`
+ * `mvn clean install` inside the root path will run all the test modules with default settings.
+    After `cd` to submodule, you can only run that module with `mvn clean install`
+    You can also `mvn clean install -f selenium-herokuapp-test/pom.xml` to run specific submodule
+ 
  * If you like to override default run settings you can just run it with
         
         #This will run your test on iPhone 6 simulator
@@ -22,69 +25,127 @@
         #This will run your account test on android device named xxxxx with default imlicit wait 10 seconds
         mvn clean -D"cucumber.options=--tags @accounts" -Ddevice.name="xxxxxx" -Dimplicit.wait="10"
         
+ * See [Property](https://github.com/mosclofri/cucumber-ui-automation-framework/blob/master/java-support-framework/src/main/java/com/support/framework/support/Property.java) class in framework for more parameter  
+        
 ### Reporting
 
   * After the test execution you can find generated HTML report in `/target/cucumber-html-reports` folder
   
 ### Project Structure
 
- * Your app package should be like com.appium.test.* to spring can be able to autowire your classes
+#### Appium
+
+ * Your app package should be com.appium.test to spring can be able to autowire your classes
  * Your pom.xml should look like this.
   
-                <parent>
-                    <groupId>com.github.mosclofri</groupId>
-                    <artifactId>cucumber-ui-automation-framework</artifactId>
-                    <version>0.6.2-SNAPSHOT</version>
-                </parent>
-
-                <artifactId>cucumber-appium-java-test</artifactId>
-                <version>${project.parent.version}</version>
-
-                <dependencies>
-                    <dependency>
+                    <parent>
                         <groupId>com.github.mosclofri</groupId>
-                        <artifactId>java-appium-framework</artifactId>
-                        <version>${project.parent.version}</version>
-                    </dependency>
-                </dependencies>
+                        <artifactId>cucumber-ui-automation-framework</artifactId>
+                        <version>0.6.2-SNAPSHOT</version>
+                    </parent>
+                
+                    <artifactId>appium-apidemos-test</artifactId>
+                    <version>${project.parent.version}</version>
+                
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.mosclofri</groupId>
+                            <artifactId>java-appium-framework</artifactId>
+                            <version>${project.parent.version}</version>
+                        </dependency>
+                    </dependencies>
+                
+                    <build>
+                        <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-plugin</artifactId>
+                                <version>${surefire-version}</version>
+                                <configuration>
+                                    <systemPropertyVariables>
+                                        <spring.profiles.active>Android</spring.profiles.active>
+                                        <platform.name>Android</platform.name>
+                                        <appium.host>127.0.0.1</appium.host>
+                                        <appium.port>4799</appium.port>
+                                        <implicit.wait>3</implicit.wait>
+                                        <app.file>api-demos-debug.apk</app.file>
+                                        <device.name>emulator-5554</device.name>
+                                    </systemPropertyVariables>
+                                    <testFailureIgnore>true</testFailureIgnore>
+                                    <workingDirectory>${basedir}</workingDirectory>
+                                </configuration>
+                            </plugin>
+                        </plugins>
+                    </build>
+                
+                    <repositories>
+                        <repository>
+                            <snapshots>
+                                <updatePolicy>always</updatePolicy>
+                            </snapshots>
+                            <id>cucumber-appium-java-mvn-repo</id>
+                            <url>https://raw.github.com/mosclofri/cucumber-ui-automation-framework/mvn-repo/</url>
+                        </repository>
+                    </repositories>
+                    
+#### Selenium
 
-                <build>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <version>${surefire-version}</version>
-                            <configuration>
-                                <systemPropertyVariables>
-                                    <spring.profiles.active>Android</spring.profiles.active>
-                                    <platform.name>Android</platform.name>
-                                    <appium.host>127.0.0.1</appium.host>
-                                    <appium.port>4799</appium.port>
-                                    <implicit.wait>3</implicit.wait>
-                                    <app.file>api-demos-debug.apk</app.file>
-                                    <device.name>emulator-5554</device.name>
-                                </systemPropertyVariables>
-                                <testFailureIgnore>true</testFailureIgnore>
-                                <workingDirectory>${basedir}</workingDirectory>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </build>
-
-                <repositories>
-                    <repository>
-                        <snapshots>
-                            <updatePolicy>always</updatePolicy>
-                        </snapshots>
-                        <id>cucumber-appium-java-mvn-repo</id>
-                        <url>https://raw.github.com/mosclofri/cucumber-ui-automation-framework/mvn-repo/</url>
-                    </repository>
-                </repositories>
+ * Your app package should be com.appium.test to spring can be able to autowire your classes
+ * Your pom.xml should look like this.
+ 
+                    <parent>
+                        <groupId>com.github.mosclofri</groupId>
+                        <artifactId>cucumber-ui-automation-framework</artifactId>
+                        <version>0.6.2-SNAPSHOT</version>
+                    </parent>
+                
+                    <artifactId>selenium-herokuapp-test</artifactId>
+                    <version>${project.parent.version}</version>
+                
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.mosclofri</groupId>
+                            <artifactId>java-selenium-framework</artifactId>
+                            <version>${project.parent.version}</version>
+                        </dependency>
+                    </dependencies>
+                
+                    <build>
+                        <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-plugin</artifactId>
+                                <version>${surefire-version}</version>
+                                <configuration>
+                                    <systemPropertyVariables>
+                                        <spring.profiles.active>Selenium</spring.profiles.active>
+                                        <platform.name>Selenium</platform.name>
+                                        <browser.name>Chrome</browser.name>
+                                        <base.url>http://the-internet.herokuapp.com</base.url>
+                                        <implicit.wait>3</implicit.wait>
+                                        <grid.use>false</grid.use>
+                                    </systemPropertyVariables>
+                                    <testFailureIgnore>true</testFailureIgnore>
+                                    <workingDirectory>${basedir}</workingDirectory>
+                                </configuration>
+                            </plugin>
+                        </plugins>
+                    </build>
+                
+                    <repositories>
+                        <repository>
+                            <snapshots>
+                                <updatePolicy>always</updatePolicy>
+                            </snapshots>
+                            <id>cucumber-appium-java-mvn-repo</id>
+                            <url>https://raw.github.com/mosclofri/cucumber-ui-automation-framework/mvn-repo/</url>
+                        </repository>
+                    </repositories>                                  
 
 ## Tips
 ### Locating Elements
 
- While using PageFactory and AppiumFieldDecorator define and locate elements. It will decorate your element according to platform in test.
+ While using PageFactory and AppiumFieldDecorator define and locate elements. It will decorate your element according to the platform in the test.
  
     @AndroidFindBy(id = "checkbox_button")
     @iOSFindBy(id = "check_button_id_in_your_ios_app")
@@ -102,21 +163,20 @@
      
 ### Implicit and Explicit Waits
 
- An **implicit** wait is to tell Driver to poll for a certain amount of time when trying to find an element
- or elements if they are not immediately available. Once set, the implicit wait is set for the life of
+ A **implicit** wait is to tell Driver to poll for a certain amount of time when trying to find an element or elements if they are not immediately available. Once set, the implicit wait is set for the life of
  the Web Driver object instance until it changed again.
     
- An **explicit** waits is the code you define to wait for a certain condition to occur before proceeding further in the code.
- WebDriverWait in combination with ExpectedCondition is most common way this can be accomplished.
+ A **explicit** wait is the code you define to wait for a certain condition to occur before proceeding further in the code.
+ WebDriverWait in combination with ExpectedCondition is the most common way this can be accomplished.
      
     If (given implicit time >= explicit time)
         explicit time is ignored and driver will wait till implicit wait value
     if (given explicit time >= implicit time)
-        max time taken to find element (or condition) will vary between implicit wait value and and sum of implicit wait and explicit wait
+        max time taken to find the element (or condition) will vary between implicit wait value and the sum of implicit wait and explicit wait
      
  Setting high implicit wait is blindly telling Selenium, if you don't find my element, then wait for a certain time until.
  No matter what it is, no matter the consequence, no matter what happened, you wait until you either find it or wait duration has passed.
- So try to keep your implicit wait value as low as possible and use explicit wait where wait needed
+ So try to keep your implicit wait value as low as possible (better set to default value 1) and use explicit wait where wait needed
     
  * **Controlling Implicit Wait**
 
@@ -130,7 +190,7 @@
  
     alertDialogsPage.getHelper().initElementsWithFieldDecorator(AlertDialogsPage.class);
     
- If you want override implicit wait time for elements that located with findElement() you can do
+ If you want to override implicit wait time for elements that located with findElement() you can do
     
     alertDialogsPage.getHelper().setDriverWaitTime(10);
     
@@ -143,7 +203,7 @@
     
  * **Override Both Implicit and Explicit Wait**
  
- Annotation @WithTimeout will override every wait and wait that element until exact that value
+ Annotation @WithTimeout will override every wait and wait for that element until exact that value
  
     @AndroidFindBy(id = "checkbox_button")
     @iOSFindBy(id = "check_button_id_in_your_ios_app")
