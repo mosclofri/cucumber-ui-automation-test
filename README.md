@@ -1,6 +1,6 @@
 # cucumber-appium-java-test
 
- This repository contains sample usage of  [cucumber-appium-java-framework](https://github.com/mosclofri/cucumber-appium-java-framework)
+ This repository contains sample usage of  [cucumber-ui-automation-framework](https://github.com/mosclofri/cucumber-ui-automation-framework)
 
 ## Running Your Tests
 
@@ -31,79 +31,55 @@
  * Your app package should be like com.appium.test.* to spring can be able to autowire your classes
  * Your pom.xml should look like this.
   
-            <parent>
-                <groupId>com.github.mosclofri</groupId>
-                <artifactId>cucumber-appium-java-framework</artifactId>
-                <version>0.6.0</version>
-            </parent>
-        
-            <artifactId>cucumber-appium-java-test</artifactId>
-            <groupId>com.appium.test</groupId>
-            <version>1.0.0</version>
-        
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${surefire-version}</version>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <spring.profiles.active>Android</spring.profiles.active> <!--Appium Platform-->
-                                <appium.host>127.0.0.1</appium.host>
-                                <appium.port>4799</appium.port>
-                                <implicit.wait>3</implicit.wait>
-                                <app.file>api-demos-debug.apk</app.file>
-                                <device.name>emulator-5554</device.name>
-                                <compare.image>false</compare.image>
-                                <no.reset>true</no.reset>
-                                <appium.log>warn</appium.log>
-                                <testrail.url>https://???/index.php?/cases/view/</testrail.url>
-                            </systemPropertyVariables>
-                            <testFailureIgnore>true</testFailureIgnore>
-                            <workingDirectory>${basedir}</workingDirectory>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>net.masterthought</groupId>
-                        <artifactId>maven-cucumber-reporting</artifactId>
-                        <version>${reporting-version}</version>
-                        <executions>
-                            <execution>
-                                <id>execution</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <configuration>
-                                    <projectName>${artifactId}</projectName>
-                                    <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-                                    <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-                                    <parallelTesting>false</parallelTesting>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        
-            <dependencies>
-                <dependency>
+                <parent>
                     <groupId>com.github.mosclofri</groupId>
-                    <artifactId>appium-framework</artifactId>
-                    <version>${parent.version}</version>
-                </dependency>
-            </dependencies>
-        
-            <repositories>
-                <repository>
-                    <id>cucumber-appium-java-mvn-repo</id>
-                    <url>https://raw.github.com/mosclofri/cucumber-appium-java-framework/mvn-repo/</url>
-                    <snapshots>
-                        <updatePolicy>always</updatePolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
+                    <artifactId>cucumber-ui-automation-framework</artifactId>
+                    <version>0.6.2-SNAPSHOT</version>
+                </parent>
+
+                <artifactId>cucumber-appium-java-test</artifactId>
+                <version>${project.parent.version}</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.mosclofri</groupId>
+                        <artifactId>java-appium-framework</artifactId>
+                        <version>${project.parent.version}</version>
+                    </dependency>
+                </dependencies>
+
+                <build>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>${surefire-version}</version>
+                            <configuration>
+                                <systemPropertyVariables>
+                                    <spring.profiles.active>Android</spring.profiles.active>
+                                    <platform.name>Android</platform.name>
+                                    <appium.host>127.0.0.1</appium.host>
+                                    <appium.port>4799</appium.port>
+                                    <implicit.wait>3</implicit.wait>
+                                    <app.file>api-demos-debug.apk</app.file>
+                                    <device.name>emulator-5554</device.name>
+                                </systemPropertyVariables>
+                                <testFailureIgnore>true</testFailureIgnore>
+                                <workingDirectory>${basedir}</workingDirectory>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </build>
+
+                <repositories>
+                    <repository>
+                        <snapshots>
+                            <updatePolicy>always</updatePolicy>
+                        </snapshots>
+                        <id>cucumber-appium-java-mvn-repo</id>
+                        <url>https://raw.github.com/mosclofri/cucumber-ui-automation-framework/mvn-repo/</url>
+                    </repository>
+                </repositories>
 
 ## Tips
 ### Locating Elements

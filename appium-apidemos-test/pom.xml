@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.mosclofri</groupId>
+        <artifactId>cucumber-ui-automation-framework</artifactId>
+        <version>0.6.2-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cucumber-appium-java-test</artifactId>
+    <version>${project.parent.version}</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.mosclofri</groupId>
+            <artifactId>java-appium-framework</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-version}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <spring.profiles.active>Android</spring.profiles.active>
+                        <platform.name>Android</platform.name>
+                        <appium.host>127.0.0.1</appium.host>
+                        <appium.port>4799</appium.port>
+                        <implicit.wait>3</implicit.wait>
+                        <app.file>api-demos-debug.apk</app.file>
+                        <device.name>emulator-5554</device.name>
+                    </systemPropertyVariables>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <workingDirectory>${basedir}</workingDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>cucumber-appium-java-mvn-repo</id>
+            <url>https://raw.github.com/mosclofri/cucumber-ui-automation-framework/mvn-repo/</url>
+        </repository>
+    </repositories>
+
+</project>
