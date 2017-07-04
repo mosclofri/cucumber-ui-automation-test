@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.github.mosclofri</groupId>
         <artifactId>cucumber-ui-automation-framework</artifactId>
-        <version>0.6.2-SNAPSHOT</version>
+        <version>0.6.3</version>
     </parent>
 
     <artifactId>appium-apidemos-test</artifactId>
@@ -29,11 +30,8 @@
                     <systemPropertyVariables>
                         <spring.profiles.active>Android</spring.profiles.active>
                         <platform.name>Android</platform.name>
-                        <appium.host>127.0.0.1</appium.host>
-                        <appium.port>4799</appium.port>
-                        <implicit.wait>3</implicit.wait>
-                        <app.file>api-demos-debug.apk</app.file>
                         <device.name>emulator-5554</device.name>
+                        <app.file>api-demos-debug.apk</app.file>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                     <workingDirectory>${basedir}</workingDirectory>

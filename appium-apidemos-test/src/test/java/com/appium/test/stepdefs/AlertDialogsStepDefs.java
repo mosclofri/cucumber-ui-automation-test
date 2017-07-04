@@ -19,23 +19,22 @@ public class AlertDialogsStepDefs {
         alertDialogsPage.L_TEXT_1.get(3).click();
     }
 
-    @Given("^I am on 'Repeat Alarm' screen$")
-    public void givenIAmOnRepeatAlarmScreen() {
-        alertDialogsPage.CHECKBOX_BUTTON.click();
-    }
-
-
     @Then("^all days should be checked for alarm$")
     public void thenAllDaysShouldBeCheckedForAlarm() {
         givenIAmOnRepeatAlarmScreen();
         alertDialogsPage.getHelper().androidIsAllChecked(alertDialogsPage.L_TEXT_1);
     }
 
+    @Given("^I am on 'Repeat Alarm' screen$")
+    public void givenIAmOnRepeatAlarmScreen() {
+        alertDialogsPage.CHECKBOX_BUTTON.click();
+    }
+
     @Then("^week days should be checked for alarm$")
     public void thenWeekDaysShouldBeCheckedForAlarm() {
         givenIAmOnRepeatAlarmScreen();
         for (int i = 0; i < 5; i++) {
-            if (!alertDialogsPage.getHelper().androidIsChecked(alertDialogsPage.L_TEXT_1, i)) {
+            if (!alertDialogsPage.getHelper().androidIsChecked(alertDialogsPage.L_TEXT_1.get(i))) {
                 fail("'" + alertDialogsPage.L_TEXT_1.get(i).getText() + "' is not checked");
             }
         }
@@ -50,7 +49,7 @@ public class AlertDialogsStepDefs {
     @When("^I check all week days for alarm$")
     public void whenICheckAllWeekDaysForAlarm() {
         for (int i = 0; i < 5; i++) {
-            if (!alertDialogsPage.getHelper().androidIsChecked(alertDialogsPage.L_TEXT_1, i)) {
+            if (!alertDialogsPage.getHelper().androidIsChecked(alertDialogsPage.L_TEXT_1.get(i))) {
                 alertDialogsPage.L_TEXT_1.get(i).click();
             }
         }

@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.mosclofri</groupId>
-    <artifactId>cucumber-ui-automation-framework</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>cucumber-ui-automation-test</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
