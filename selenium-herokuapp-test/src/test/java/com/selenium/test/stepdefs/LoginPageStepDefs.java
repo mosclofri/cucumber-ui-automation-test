@@ -12,21 +12,21 @@ public class LoginPageStepDefs {
     public LoginPage loginPage;
 
     @Given("^I am on 'Login Page' screen$")
-    public void iAmOnLoginPageScreen() {
+    public void givenIAmOnLoginPageScreen() {
         loginPage.getHelper().getURL("/login");
-        loginPage.getHelper().shouldDisplay(loginPage.USERNAME, 10);
-    }
-
-    @When("^I enter '(.*)' as username and '(.*)' as password$")
-    public void iEnterTomsmithAsUsernameAndSuperSecretPasswordAsPassword(String username, String password) {
-        loginPage.USERNAME.sendKeys(username);
-        loginPage.PASSWORD.sendKeys(password);
-        loginPage.LOGIN_BUTTON.click();
+        loginPage.getHelper().assertElementPresent(loginPage.USERNAME, 10);
     }
 
     @Then("^I 'Home Page' should be displayed$")
-    public void iHomePageShouldBeDisplayed() {
-        loginPage.getHelper().shouldDisplay(loginPage.LOGOUT_BUTTON, 10);
+    public void thenIHomePageShouldBeDisplayed() {
+        loginPage.getHelper().assertElementPresent(loginPage.LOGOUT_BUTTON, 10);
+    }
+
+    @When("^I enter '(.*)' as username and '(.*)' as password$")
+    public void whenIEnterTomsmithAsUsernameAndSuperSecretPasswordAsPassword(String username, String password) {
+        loginPage.USERNAME.sendKeys(username);
+        loginPage.PASSWORD.sendKeys(password);
+        loginPage.LOGIN_BUTTON.click();
     }
 
 }

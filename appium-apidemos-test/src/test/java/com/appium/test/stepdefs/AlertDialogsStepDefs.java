@@ -19,15 +19,15 @@ public class AlertDialogsStepDefs {
         alertDialogsPage.L_TEXT_1.get(3).click();
     }
 
+    @Given("^I am on 'Repeat Alarm' screen$")
+    public void givenIAmOnRepeatAlarmScreen() {
+        alertDialogsPage.CHECKBOX_BUTTON.click();
+    }
+
     @Then("^all days should be checked for alarm$")
     public void thenAllDaysShouldBeCheckedForAlarm() {
         givenIAmOnRepeatAlarmScreen();
         alertDialogsPage.getHelper().androidIsAllChecked(alertDialogsPage.L_TEXT_1);
-    }
-
-    @Given("^I am on 'Repeat Alarm' screen$")
-    public void givenIAmOnRepeatAlarmScreen() {
-        alertDialogsPage.CHECKBOX_BUTTON.click();
     }
 
     @Then("^week days should be checked for alarm$")

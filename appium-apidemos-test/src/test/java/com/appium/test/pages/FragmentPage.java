@@ -15,16 +15,18 @@ import java.util.List;
 
 @Component
 @Scope("cucumber-glue")
-public class AlertDialogsPage extends PageObjectConstruct {
+public class FragmentPage extends PageObjectConstruct {
 
-    @AndroidFindBy(id = "button1")
-    @iOSFindBy(id = "some_ios_id_button_1")
-    public MobileElement BUTTON_1;
-    @AndroidFindBy(id = "checkbox_button")
-    @iOSFindBy(id = "some_ios_id_checkbox_button")
-    public MobileElement CHECKBOX_BUTTON;
-    @AndroidFindAll({@AndroidBy(id = "text1")})
-    @iOSFindAll({@iOSBy(id = "some_ios_id_text1")})
-    public List<MobileElement> L_TEXT_1;
-
+    @AndroidFindBy(id = "frag1hide")
+    @iOSFindBy(id = "some_ios_id_frag1hide")
+    public MobileElement FRAG_HIDE_1;
+    @AndroidFindBy(id = "frag2hide")
+    @iOSFindBy(id = "some_ios_id_frag2hide")
+    public MobileElement FRAG_HIDE_2;
+    @AndroidFindBy(id = "long_press")
+    @iOSFindBy(id = "some_ios_id_long_press")
+    public MobileElement LONG_PRESS_BUTTON;
+    @AndroidFindAll({@AndroidBy(id = "msg")})
+    @iOSFindAll({@iOSBy(id = "some_ios_id_msg")})
+    public List<MobileElement> MSG;
 }

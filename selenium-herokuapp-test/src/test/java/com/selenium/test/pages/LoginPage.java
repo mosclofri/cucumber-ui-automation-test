@@ -10,16 +10,13 @@ import org.springframework.stereotype.Component;
 @Scope("cucumber-glue")
 public class LoginPage extends PageObjectConstruct {
 
-    @FindBy(id = "username")
-    public WebElement USERNAME;
-
-    @FindBy(id = "password")
-    public WebElement PASSWORD;
-
     @FindBy(css = "button.radius")
     public WebElement LOGIN_BUTTON;
-
     @FindBy(css = "a.button.secondary.radius")
     public WebElement LOGOUT_BUTTON;
+    @FindBy(id = "password")
+    public WebElement PASSWORD;
+    @FindBy(id = "username")
+    public WebElement USERNAME;
 
 }

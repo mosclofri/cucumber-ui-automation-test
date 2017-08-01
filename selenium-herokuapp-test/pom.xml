@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.mosclofri</groupId>
         <artifactId>cucumber-ui-automation-framework</artifactId>
-        <version>0.6.3</version>
+        <version>0.6.4</version>
     </parent>
 
     <artifactId>selenium-herokuapp-test</artifactId>
@@ -32,6 +32,7 @@
                         <platform.name>Selenium</platform.name>
                         <browser.name>Chrome</browser.name>
                         <base.url>http://the-internet.herokuapp.com</base.url>
+                        <grid.use>false</grid.use>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                     <workingDirectory>${basedir}</workingDirectory>

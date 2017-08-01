@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.mosclofri</groupId>
         <artifactId>cucumber-ui-automation-framework</artifactId>
-        <version>0.6.3</version>
+        <version>0.6.4</version>
     </parent>
 
     <artifactId>appium-apidemos-test</artifactId>
@@ -32,6 +32,7 @@
                         <platform.name>Android</platform.name>
                         <device.name>emulator-5554</device.name>
                         <app.file>api-demos-debug.apk</app.file>
+                        <grid.use>false</grid.use>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                     <workingDirectory>${basedir}</workingDirectory>
