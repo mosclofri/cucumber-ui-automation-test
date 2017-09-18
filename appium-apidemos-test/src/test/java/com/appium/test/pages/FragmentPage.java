@@ -1,6 +1,7 @@
 package com.appium.test.pages;
 
-import com.appium.framework.base.PageObjectConstruct;
+import com.appium.framework.base.AppiumBase;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
@@ -15,18 +16,22 @@ import java.util.List;
 
 @Component
 @Scope("cucumber-glue")
-public class FragmentPage extends PageObjectConstruct {
+public class FragmentPage extends AppiumBase {
 
     @AndroidFindBy(id = "frag1hide")
     @iOSFindBy(id = "some_ios_id_frag1hide")
-    public MobileElement FRAG_HIDE_1;
+    public static MobileElement FRAG_HIDE_1;
     @AndroidFindBy(id = "frag2hide")
     @iOSFindBy(id = "some_ios_id_frag2hide")
-    public MobileElement FRAG_HIDE_2;
+    public static MobileElement FRAG_HIDE_2;
     @AndroidFindBy(id = "long_press")
     @iOSFindBy(id = "some_ios_id_long_press")
-    public MobileElement LONG_PRESS_BUTTON;
+    public static MobileElement LONG_PRESS_BUTTON;
     @AndroidFindAll({@AndroidBy(id = "msg")})
     @iOSFindAll({@iOSBy(id = "some_ios_id_msg")})
-    public List<MobileElement> MSG;
+    public static List<MobileElement> MSG;
+
+    public FragmentPage(AppiumDriver<? extends MobileElement> driver) {
+        super(driver);
+    }
 }

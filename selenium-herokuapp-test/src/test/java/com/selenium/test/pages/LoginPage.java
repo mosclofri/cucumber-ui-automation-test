@@ -1,6 +1,7 @@
 package com.selenium.test.pages;
 
-import com.selenium.framework.base.PageObjectConstruct;
+import com.selenium.framework.base.SeleniumBase;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.context.annotation.Scope;
@@ -8,15 +9,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("cucumber-glue")
-public class LoginPage extends PageObjectConstruct {
+public class LoginPage extends SeleniumBase {
 
     @FindBy(css = "button.radius")
-    public WebElement LOGIN_BUTTON;
+    public static WebElement LOGIN_BUTTON;
     @FindBy(css = "a.button.secondary.radius")
-    public WebElement LOGOUT_BUTTON;
+    public static WebElement LOGOUT_BUTTON;
     @FindBy(id = "password")
-    public WebElement PASSWORD;
+    public static WebElement PASSWORD;
     @FindBy(id = "username")
-    public WebElement USERNAME;
+    public static WebElement USERNAME;
 
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 }

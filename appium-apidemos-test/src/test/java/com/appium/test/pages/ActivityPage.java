@@ -1,6 +1,7 @@
 package com.appium.test.pages;
 
-import com.appium.framework.base.PageObjectConstruct;
+import com.appium.framework.base.AppiumBase;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidBy;
 import io.appium.java_client.pagefactory.AndroidFindAll;
@@ -15,29 +16,31 @@ import java.util.List;
 
 @Component
 @Scope("cucumber-glue")
-public class ActivityPage extends PageObjectConstruct {
+public class ActivityPage extends AppiumBase {
 
     @AndroidFindBy(id = "left_text")
     @iOSFindBy(id = "some_ios_left_text")
-    public MobileElement LEFT_TEXT;
+    public static MobileElement LEFT_TEXT;
     @AndroidFindBy(id = "left_text_button")
     @iOSFindBy(id = "some_ios_left_text_button")
-    public MobileElement LEFT_TEXT_BUTTON;
+    public static MobileElement LEFT_TEXT_BUTTON;
     @AndroidFindBy(id = "left_text_edit")
     @iOSFindBy(id = "some_ios_left_text_edit")
-    public MobileElement LEFT_TEXT_EDIT;
+    public static MobileElement LEFT_TEXT_EDIT;
     @AndroidFindAll({@AndroidBy(id = "text1")})
     @iOSFindAll({@iOSBy(id = "some_ios_id_text1")})
-    public List<MobileElement> L_TEXT_1;
+    public static List<MobileElement> L_TEXT_1;
     @AndroidFindBy(id = "right_text")
     @iOSFindBy(id = "some_ios_right_text")
-    public MobileElement RIGHT_TEXT;
+    public static MobileElement RIGHT_TEXT;
     @AndroidFindBy(id = "right_text_button")
     @iOSFindBy(id = "some_ios_right_text_button")
-    public MobileElement RIGHT_TEXT_BUTTON;
+    public static MobileElement RIGHT_TEXT_BUTTON;
     @AndroidFindBy(id = "right_text_edit")
     @iOSFindBy(id = "some_ios_right_text_edit")
-    public MobileElement RIGHT_TEXT_EDIT;
+    public static MobileElement RIGHT_TEXT_EDIT;
 
-
+    public ActivityPage(AppiumDriver<? extends MobileElement> driver) {
+        super(driver);
+    }
 }
